@@ -22,9 +22,39 @@
       <textarea v-model="modify" class="form-control" ref="textToCopy" id="result" rows="8"></textarea>
     <button @click="copy" class="btn btn-primary">Copy to clipboard</button>
     </div>
-    <p class="mt-1">
-      Customised emoji substitution? That would just be overengineering... 🤔
-    </p>
+    <div class="mt-1">
+      <span class="mt-1"><strong>Options</strong></span>
+      <div>
+        🟩 =
+        <button @click="set('g', '🇸🇦', $event)" class="btn" :class="check('g', '🇸🇦')">🇸🇦</button>
+        <button @click="set('g', '💚', $event)" class="btn" :class="check('g', '💚')">💚</button>
+        <button @click="set('g', '📗', $event)" class="btn" :class="check('g', '📗')">📗</button>
+        <button @click="set('g', '🍏', $event)" class="btn" :class="check('g', '🍏')">🍏</button>
+        <button @click="set('g', '🌲', $event)" class="btn" :class="check('g', '🌲')">🌲</button>
+        <button @click="set('g', '🥬', $event)" class="btn" :class="check('g', '🥬')">🥬</button>
+        <button @click="set('g', '🟢', $event)" class="btn" :class="check('g', '🟢')">🟢</button>
+      </div>
+      <div>
+        🟨 =
+        <button @click="set('y', '🇳🇺', $event)" class="btn" :class="check('y', '🇳🇺')">🇳🇺</button>
+        <button @click="set('y', '💛', $event)" class="btn" :class="check('y', '💛')">💛</button>
+        <button @click="set('y', '🟡', $event)" class="btn" :class="check('y', '🟡')">🟡</button>
+        <button @click="set('y', '🌕', $event)" class="btn" :class="check('y', '🌕')">🌕</button>
+        <button @click="set('y', '🌞', $event)" class="btn" :class="check('y', '🌞')">🌞</button>
+        <button @click="set('y', '👊', $event)" class="btn" :class="check('y', '👊')">👊</button>
+        <button @click="set('y', '🤔', $event)" class="btn" :class="check('y', '🤔')">🤔</button>
+      </div>
+      <div>
+        ⬜ =
+        <button @click="set('w', '🏳️', $event)" class="btn" :class="check('w', '🏳️')">🏳️</button>
+        <button @click="set('w', '🤍', $event)" class="btn" :class="check('w', '🤍')">🤍</button>
+        <button @click="set('w', '🔳', $event)" class="btn" :class="check('w', '🔳')">🔳</button>
+        <button @click="set('w', '🇨🇾', $event)" class="btn" :class="check('w', '🇨🇾')">🇨🇾</button>
+        <button @click="set('w', '🌫️', $event)" class="btn" :class="check('w', '🌫️')">🌫️</button>
+        <button @click="set('w', '🍚', $event)" class="btn" :class="check('w', '🍚')">🍚</button>
+        <button @click="set('w', '🗯️', $event)" class="btn" :class="check('w', '🗯️')">🗯️</button>
+      </div>
+    </div>
   </fieldset>
 </form>
   </div>
@@ -35,7 +65,10 @@
   export default {
     data() {
       return {
-        wordle: "",
+        wordle: '',
+        g: '🇸🇦',
+        y: '🇳🇺',
+        w: '🏳️',
       };
     },
     methods: {
@@ -50,14 +83,44 @@
         this.$refs.textToCopy.focus();
         this.$refs.textToCopy.select();
         document.execCommand('copy');
-      }
+      },
+      set(key, value, event) {
+        event.preventDefault();
+        if (key === 'g') {
+          this.g = value;
+        }
+        if (key === 'y') {
+          this.y = value;
+        }
+        if (key === 'w') {
+          this.w = value;
+        }
+      },
+      check(key, value) {
+        if (key === 'g') {
+          if (this.g === value) {
+            return 'btn-primary';
+          }
+        }
+        if (key === 'y') {
+          if (this.y === value) {
+            return 'btn-primary';
+          }
+        }
+        if (key === 'w') {
+          if (this.w === value) {
+            return 'btn-primary';
+          }
+        }
+        return 'btn-light';
+      },
     },
     computed: {
       modify() {
         let newWordle = this.wordle.replace(/Wordle/g, 'Humblebrag');
-        newWordle = newWordle.replace(/🟩/g, '🇸🇦');
-        newWordle = newWordle.replace(/⬜/g, '🏳️');
-        newWordle = newWordle.replace(/🟨/g, '🇳🇺');
+        newWordle = newWordle.replace(/🟩/g, this.g);
+        newWordle = newWordle.replace(/⬜/g, this.w);
+        newWordle = newWordle.replace(/🟨/g, this.y);
         return newWordle
       },
     },
@@ -73,5 +136,9 @@
   .m-1 {
     margin: 1rem;
   }
-
+  .btn-primary:focus {
+    box-shadow: none;
+    background-color: #2780e3;
+    border-color: #2780e3;
+  }
 </style>
