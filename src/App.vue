@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-4">
     <div class="card border-primary mb-3">
     <div class="card-header">Apropos of Wordle Twitter humblebrags</div>
     <div class="card-body">
@@ -7,10 +7,10 @@
       <p class="card-text">Worried your daily Wordle humblebrags are being ignored?</p>
       <p class="card-text">This is a simple fix to make sure your humblebrags are not ignored.</p>
     </div>
-    <form class="m-3">
+    <form class="m-1">
   <fieldset>
     <div class="form-group has-danger">
-      <label for="pasteWordle" class="form-label mt-4">Paste your Wordle humblebrag here</label>
+      <label for="pasteWordle" class="form-label mt-1">Paste your Wordle humblebrag here</label>
       <textarea v-model="wordle" :class="{ 'is-invalid': wordle && !checkvalid() }" class="form-control" id="pasteWordle" rows="8"></textarea>
       <div class="invalid-feedback" v-if="wordle && !checkvalid()">Invalid humblebrag: paste directly from Wordle!</div>
     </div>
@@ -18,11 +18,11 @@
   
     <fieldset v-if="checkvalid()">
     <div class="form-group">
-      <label for="result" class="form-label mt-4">Here's your modified humblebrag</label>
+      <label for="result" class="form-label mt-1">Here's your modified humblebrag</label>
       <textarea v-model="modify" class="form-control" ref="textToCopy" id="result" rows="8"></textarea>
     <button @click="copy" class="btn btn-primary">Copy to clipboard</button>
     </div>
-    <p class="mt-4">
+    <p class="mt-1">
       Customised emoji substitution? That would just be overengineering... 🤔
     </p>
   </fieldset>
@@ -63,4 +63,15 @@
     },
   };
 </script>
+<style scoped>
+  .mt-4 {
+    margin-top: 4rem;
+  }
+  .mt-1 {
+    margin-top: 1rem;
+  }
+  .m-1 {
+    margin: 1rem;
+  }
 
+</style>
