@@ -1,0 +1,22 @@
+{
+  "name": "humble-brag-fix",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "npx parcel serve src/index.html",
+    "build": "npx parcel build src/index.html --dist-dir ./build"
+  },
+  "author": "JP Lomas <jp@lomas.doctor>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "vue": "^3.2.20"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0",
+    "@parcel/transformer-vue": "^2.0.0",
+    "@vue/compiler-sfc": "^3.2.20",
+    "parcel": "^2.0.0-rc.0"
+  }
+}
