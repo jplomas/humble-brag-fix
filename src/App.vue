@@ -159,6 +159,7 @@
         newWordle = newWordle.replace(/Wordle/g, this.a);
         newWordle = newWordle.replace(/🟩/g, this.g);
         newWordle = newWordle.replace(/⬜/g, this.w);
+        newWordle = newWordle.replace(/⬛/g, this.w);
         newWordle = newWordle.replace(/🟨/g, this.y);
         return newWordle
       },
